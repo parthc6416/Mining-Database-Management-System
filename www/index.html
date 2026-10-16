@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mining Database Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================ LOGIN ============================ -->
+<section id="login-view" class="login-wrap">
+  <form id="login-form" class="login-card" autocomplete="off">
+    <div class="login-head">
+      <div class="logo">⛏</div>
+      <div>
+        <h1>Mining Database<br>Management System</h1>
+        <p class="sub">C &middot; ODBC &middot; Oracle</p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="dsn">ODBC DSN</label>
+      <input id="dsn" name="dsn" type="text" placeholder="MDBMS_ORACLE" spellcheck="false">
+      <small>The Data Source Name you configured in <code>odbcad32.exe</code>.</small>
+    </div>
+
+    <div class="field">
+      <label for="user">Oracle username</label>
+      <input id="user" name="user" type="text" spellcheck="false" autocomplete="username">
+    </div>
+
+    <div class="field">
+      <label for="password">Oracle password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password">
+    </div>
+
+    <div class="field" id="connstr-field" hidden>
+      <label for="connstr">Full ODBC connection string</label>
+      <input id="connstr" name="connstr" type="text" spellcheck="false"
+             placeholder="DRIVER={Oracle in XE};DBQ=localhost:1521/XE;UID=scott;PWD=tiger">
+      <small>Used instead of the DSN, username and password above.</small>
+    </div>
+
+    <label class="check">
+      <input type="checkbox" id="use-connstr">
+      <span>Use a full connection string instead of a DSN</span>
+    </label>
+
+    <button type="submit" class="btn primary wide" id="connect-btn">Connect</button>
+
+    <p id="login-error" class="login-error" hidden></p>
+
+    <div class="login-foot">
+      <button type="button" class="link" id="show-dsns">Show ODBC data sources on this machine</button>
+      <div id="dsn-list" class="dsn-list" hidden></div>
+    </div>
+  </form>
+</section>
+
+<!-- ============================= APP ============================= -->
+<div id="app-view" class="app" hidden>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo small">⛏</span>
+      <span class="brand-text">Mining&nbsp;DBMS</span>
+    </div>
+
+    <nav id="nav"></nav>
+
+    <div class="sidebar-foot">
+      <div class="conn">
+        <span class="dot"></span>
+        <div class="conn-text">
+          <strong id="conn-user">&mdash;</strong>
+          <small id="conn-dsn">&mdash;</small>
+        </div>
+      </div>
+      <button class="btn ghost wide" id="disconnect-btn">Disconnect</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="page-title">Dashboard</h2>
+        <p id="page-sub" class="page-sub"></p>
+      </div>
+      <div id="page-actions" class="page-actions"></div>
+    </header>
+    <div id="page" class="page"></div>
+  </main>
+</div>
+
+<!-- ============================ MODAL ============================ -->
+<div id="modal-backdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <header class="modal-head">
+      <h3 id="modal-title">Title</h3>
+      <button class="icon-btn" id="modal-close" aria-label="Close">&times;</button>
+    </header>
+    <form id="modal-form">
+      <div id="modal-body" class="modal-body"></div>
+      <footer class="modal-foot">
+        <p id="modal-error" class="modal-error" hidden></p>
+        <div class="modal-buttons">
+          <button type="button" class="btn ghost" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn primary" id="modal-submit">Save</button>
+        </div>
+      </footer>
+    </form>
+  </div>
+</div>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

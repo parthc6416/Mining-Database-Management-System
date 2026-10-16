@@ -1,0 +1,41 @@
+
+# Compiled executables and build artifacts
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.lib
+*.pdb
+*.ilk
+
+# Debug and temporary files
+*.log
+*.tmp
+*.stackdump
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Environment files and credentials
+.env
+.env.*
+!.env.example
+
+# Oracle client / driver bundle
+/DBMS new/
+
+# Generated build directories
+build/
+dist/
+
+# Backup files
+*.bak
+*.old
+*~
